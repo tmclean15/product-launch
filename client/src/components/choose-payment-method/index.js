@@ -9,7 +9,7 @@ import {
   MenuItem,
 } from "@material-ui/core";
 import CreditCardIcon from "@material-ui/icons/CreditCard";
-import setupPaymentMethod from "../util/setupPaymentMethod";
+import setupPaymentMethod from "../../util/setupPaymentMethod";
 import { makeStyles } from "@material-ui/core/styles";
 import axios from "axios";
 

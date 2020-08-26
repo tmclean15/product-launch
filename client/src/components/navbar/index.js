@@ -10,7 +10,7 @@ import {
 import { makeStyles } from "@material-ui/core/styles";
 import logo from "../staticImages/ic-logo.png";
 
-import LinkTo from "../components/navigation/LinkTo";
+import LinkTo from "../navigation/LinkTo";
 
 const useStyles = makeStyles((theme) => ({
   appBar: {

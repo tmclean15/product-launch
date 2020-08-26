@@ -12,7 +12,7 @@ import {
 } from "@material-ui/core";
 
 import DropZoneUpload from "../components/DropZoneUpload";
-import ExpertiseChips from "../components/ExpertiseChips";
+import ExpertiseChips from "../expertise-chips";
 
 function EditProfileDialog(props) {
   // Used for initializing values
