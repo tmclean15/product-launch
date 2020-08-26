@@ -1,11 +1,11 @@
-import React from "react";
-import { Box, IconButton } from "@material-ui/core";
-import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
-import ArrowBackIcon from "@material-ui/icons/ArrowBack";
+import React from 'react'
+import { Box, IconButton } from '@material-ui/core'
+import ArrowForwardIcon from '@material-ui/icons/ArrowForward'
+import ArrowBackIcon from '@material-ui/icons/ArrowBack'
 
 function BackForwardArrows(props) {
   return (
-    <Box display="flex" justifyContent="space-between" width="100%">
+    <Box display='flex' justifyContent='space-between' width='100%'>
       <IconButton onClick={props.handleBack}>
         <ArrowBackIcon />
       </IconButton>
@@ -13,7 +13,7 @@ function BackForwardArrows(props) {
         <ArrowForwardIcon />
       </IconButton>
     </Box>
-  );
+  )
 }
 
-export default BackForwardArrows;
+export default BackForwardArrows

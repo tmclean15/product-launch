@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { useHistory, Link } from "react-router-dom";
-import axios from "axios";
+import React, { useState } from 'react'
+import { useHistory, Link } from 'react-router-dom'
+import axios from 'axios'
 import {
   Container,
   Typography,
@@ -11,111 +11,111 @@ import {
   Checkbox,
   FormControlLabel,
   FormHelperText,
-} from "@material-ui/core";
-import Grid from "@material-ui/core/Grid";
-import { makeStyles } from "@material-ui/core/styles";
+} from '@material-ui/core'
+import Grid from '@material-ui/core/Grid'
+import { makeStyles } from '@material-ui/core/styles'
 
-import { validateEmail } from "../util/validateEmail";
+import { validateEmail } from '../util/validateEmail'
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   header: {
-    padding: "2rem",
+    padding: '2rem',
   },
   signupLink: {
-    marginLeft: "2px",
+    marginLeft: '2px',
   },
   subtitle: {
-    padding: "2rem",
+    padding: '2rem',
   },
   divider: {
     backgroundColor: theme.primary,
-    height: "2px",
-    width: "10%",
-    margin: "auto",
+    height: '2px',
+    width: '10%',
+    margin: 'auto',
   },
   button: {
     backgroundColor: theme.primary,
-    marginTop: "4rem",
-    marginBottom: "4rem",
+    marginTop: '4rem',
+    marginBottom: '4rem',
     color: theme.bgcolor,
-    height: "3rem",
-    width: "60%",
+    height: '3rem',
+    width: '60%',
   },
-}));
+}))
 
 function Login(props) {
-  const classes = useStyles();
-  const history = useHistory();
+  const classes = useStyles()
+  const history = useHistory()
 
   // State variables
-  const [invalidEmail, setInvalidEmail] = useState(false);
-  const [invalidLogin, setInvalidLogin] = useState(false);
+  const [invalidEmail, setInvalidEmail] = useState(false)
+  const [invalidLogin, setInvalidLogin] = useState(false)
   const [rememberMe, setRememberMe] = useState(
-    localStorage.getItem("rememberMe") ? true : false
-  );
+    localStorage.getItem('rememberMe') ? true : false
+  )
   const [email, setEmail] = useState(
-    localStorage.getItem("email") ? localStorage.getItem("email") : ""
-  );
+    localStorage.getItem('email') ? localStorage.getItem('email') : ''
+  )
   const [password, setPassword] = useState(
-    localStorage.getItem("password") ? localStorage.getItem("password") : ""
-  );
+    localStorage.getItem('password') ? localStorage.getItem('password') : ''
+  )
 
-  const handleBlurEmail = (event) => {
-    setInvalidEmail(!validateEmail(email));
-  };
+  const handleBlurEmail = event => {
+    setInvalidEmail(!validateEmail(email))
+  }
 
-  const handleUpdateEmail = (event) => {
-    setEmail(event.target.value);
-  };
+  const handleUpdateEmail = event => {
+    setEmail(event.target.value)
+  }
 
   const handleRememberMe = () => {
     if (rememberMe) {
-      localStorage.setItem("rememberMe", rememberMe);
-      localStorage.setItem("email", email);
-      localStorage.setItem("password", password);
+      localStorage.setItem('rememberMe', rememberMe)
+      localStorage.setItem('email', email)
+      localStorage.setItem('password', password)
     } else {
-      localStorage.clear();
+      localStorage.clear()
     }
-  };
+  }
 
-  const handleUpdateRememberMe = (event) => {
-    setRememberMe(!rememberMe);
-  };
+  const handleUpdateRememberMe = event => {
+    setRememberMe(!rememberMe)
+  }
 
-  const handleUpdatePassword = (event) => {
-    setPassword(event.target.value);
-  };
+  const handleUpdatePassword = event => {
+    setPassword(event.target.value)
+  }
 
-  const handleLogin = (event) => {
-    event.preventDefault();
+  const handleLogin = event => {
+    event.preventDefault()
 
     axios
-      .post("/api/v1/login", {
+      .post('/api/v1/login', {
         login_email: email,
         password: password,
       })
-      .then((res) => {
-        handleRememberMe();
-        props.handleUserLog(true);
+      .then(res => {
+        handleRememberMe()
+        props.handleUserLog(true)
         // TODO: redirect to profile specific to user
-        history.push("/");
+        history.push('/')
       })
-      .catch((error) => {
-        setInvalidLogin(true);
-      });
-  };
+      .catch(error => {
+        setInvalidLogin(true)
+      })
+  }
 
   const invalidLoginMessage = (
     <Grid item>
       <FormHelperText error>Invalid email or password</FormHelperText>
     </Grid>
-  );
+  )
 
   return (
     <div>
-      <Container maxWidth="sm">
-        <Typography variant="h2" align="center" className={classes.header}>
-          <Box fontWeight="fontWeightMedium" fontSize={40}>
+      <Container maxWidth='sm'>
+        <Typography variant='h2' align='center' className={classes.header}>
+          <Box fontWeight='fontWeightMedium' fontSize={40}>
             Member login
           </Box>
         </Typography>
@@ -123,31 +123,31 @@ function Login(props) {
         <Divider classes={{ root: classes.divider }} />
 
         <Typography
-          variant="subtitle1"
-          align="center"
+          variant='subtitle1'
+          align='center'
           className={classes.subtitle}
         >
-          <Box fontWeight="fontWeightMedium" fontSize={16}>
+          <Box fontWeight='fontWeightMedium' fontSize={16}>
             New here?
-            <Link to="/signup" className={classes.signupLink}>
+            <Link to='/signup' className={classes.signupLink}>
               Sign up
             </Link>
           </Box>
         </Typography>
 
-        <form autoComplete="off" onSubmit={handleLogin}>
-          <Grid container spacing={2} direction="column" alignItems="stretch">
-            {invalidLogin ? invalidLoginMessage : ""}
+        <form autoComplete='off' onSubmit={handleLogin}>
+          <Grid container spacing={2} direction='column' alignItems='stretch'>
+            {invalidLogin ? invalidLoginMessage : ''}
 
             <Grid item>
               <TextField
-                label="Email address"
-                variant="outlined"
+                label='Email address'
+                variant='outlined'
                 fullWidth
                 required
                 value={email}
                 error={invalidEmail}
-                helperText={invalidEmail ? "Please enter a valid email" : ""}
+                helperText={invalidEmail ? 'Please enter a valid email' : ''}
                 onBlur={handleBlurEmail}
                 onChange={handleUpdateEmail}
               ></TextField>
@@ -155,9 +155,9 @@ function Login(props) {
 
             <Grid item>
               <TextField
-                type="Password"
-                label="Password"
-                variant="outlined"
+                type='Password'
+                label='Password'
+                variant='outlined'
                 fullWidth
                 required
                 value={password}
@@ -167,18 +167,18 @@ function Login(props) {
 
             <Grid item>
               <FormControlLabel
-                control={<Checkbox color="primary" checked={rememberMe} />}
-                label="Remember me"
+                control={<Checkbox color='primary' checked={rememberMe} />}
+                label='Remember me'
                 onClick={handleUpdateRememberMe}
               />
             </Grid>
 
-            <Grid item align="center">
+            <Grid item align='center'>
               <Button
                 className={classes.button}
-                size="large"
-                variant="contained"
-                type="submit"
+                size='large'
+                variant='contained'
+                type='submit'
                 disabled={invalidEmail}
                 onSubmit={handleLogin}
               >
@@ -189,7 +189,7 @@ function Login(props) {
         </form>
       </Container>
     </div>
-  );
+  )
 }
 
-export default Login;
+export default Login

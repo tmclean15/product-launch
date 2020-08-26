@@ -1,22 +1,22 @@
-import axios from "axios";
+import axios from 'axios'
 
-import { useHistory } from "react-router-dom";
+import { useHistory } from 'react-router-dom'
 
 function Logout(props) {
-  const history = useHistory();
+  const history = useHistory()
   async function logout() {
     try {
-      await axios.post(`/api/v1/logout`);
-      props.handleUserLog(false);
+      await axios.post(`/api/v1/logout`)
+      props.handleUserLog(false)
       // TODO: snackbar with "successful logout"
-      history.push("/");
+      history.push('/')
     } catch (err) {
-      console.dir(err.response.data.error);
+      console.dir(err.response.data.error)
     }
   }
-  logout();
+  logout()
 
-  return null;
+  return null
 }
 
-export default Logout;
+export default Logout

@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import MomentUtils from "@date-io/moment";
-import moment from "moment";
-import { Grid, Typography, TextField, Button } from "@material-ui/core";
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
+import MomentUtils from '@date-io/moment'
+import moment from 'moment'
+import { Grid, Typography, TextField, Button } from '@material-ui/core'
 import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker,
-} from "@material-ui/pickers";
-import { makeStyles } from "@material-ui/core/styles";
+} from '@material-ui/pickers'
+import { makeStyles } from '@material-ui/core/styles'
 
-import BackForwardArrows from "../arrows/BackForwardArrows";
+import BackForwardArrows from '../arrows/BackForwardArrows'
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   mainTitle: {
     fontWeight: 500,
     fontSize: 24,
@@ -19,75 +19,75 @@ const useStyles = makeStyles((theme) => ({
   primaryButton: {
     backgroundColor: theme.primary,
     color: theme.bgcolor,
-    margin: "2rem 0",
-    minWidth: "150px",
+    margin: '2rem 0',
+    minWidth: '150px',
   },
-}));
+}))
 
 function Funding(props) {
-  const classes = useStyles();
-  const { userId, project } = props;
+  const classes = useStyles()
+  const { userId, project } = props
 
   const [fundingGoal, setFundingGoal] = useState(
     // This converts the money string provided by backend
     // to number that can be understood by TextField
     project.funding_goal
-      ? Number(project.funding_goal.replace(/[^0-9.-]+/g, ""))
-      : ""
-  );
+      ? Number(project.funding_goal.replace(/[^0-9.-]+/g, ''))
+      : ''
+  )
   const [equity, setEquity] = useState(
-    project.equity ? project.equity * 100 : ""
-  );
+    project.equity ? project.equity * 100 : ''
+  )
   const [deadline, setDeadline] = useState(
     project.deadline
       ? moment(project.deadline).format()
       : moment(new Date()).format()
-  );
+  )
 
-  const handleUpdateFundingGoal = (event) => {
-    setFundingGoal(Number(event.target.value));
-  };
+  const handleUpdateFundingGoal = event => {
+    setFundingGoal(Number(event.target.value))
+  }
 
-  const handleUpdateEquity = (event) => {
-    if (event.target.value > 100) setEquity(100);
-    else if (event.target.value < 0) setEquity(0);
-    else setEquity(Number(event.target.value));
-  };
+  const handleUpdateEquity = event => {
+    if (event.target.value > 100) setEquity(100)
+    else if (event.target.value < 0) setEquity(0)
+    else setEquity(Number(event.target.value))
+  }
 
-  const handleUpdateDeadline = (date) => {
+  const handleUpdateDeadline = date => {
     //const formatted = moment(date).toISOString();
-    setDeadline(date.format());
-  };
+    setDeadline(date.format())
+  }
 
-  const handleContinue = (event) => {
+  const handleContinue = event => {
     axios
       .put(`/api/v1/users/${userId}/projects/${project.id}`, {
         funding_goal: fundingGoal,
         equity: equity / 100,
         deadline: deadline,
       })
-      .then((res) => props.handleTabChange("Payment"))
-      .catch((err) => console.log(err));
-  };
+      .then(res => props.handleTabChange('Payment'))
+      .catch(err => console.log(err))
+  }
 
-  const handleBack = (event) => {
-    props.handleTabChange("Story");
-  };
+  const handleBack = event => {
+    props.handleTabChange('Story')
+  }
 
-  const handleForward = (event) => {
-    props.handleTabChange("Payment");
-  };
+  const handleForward = event => {
+    props.handleTabChange('Payment')
+  }
 
   useEffect(() => {
     const update = {
       funding_goal: fundingGoal.toString(),
       equity: equity / 100,
       deadline: deadline,
-    };
-    if (props.openPreview) {
-      props.handleEditProject({ ...project, ...update });
     }
-  }, [props.openPreview]);
+    if (props.openPreview) {
+      props.handleEditProject({ ...project, ...update })
+    }
+  }, [props.openPreview])
 
   return (
     <Grid container spacing={4}>
@@ -104,12 +104,12 @@ function Funding(props) {
       <Grid item xs={12}>
         <Typography>Funding goal amount</Typography>
         <TextField
-          type="number"
-          variant="outlined"
+          type='number'
+          variant='outlined'
           fullWidth
           value={fundingGoal}
           onChange={handleUpdateFundingGoal}
-          InputProps={{ startAdornment: "$ " }}
+          InputProps={{ startAdornment: '$ ' }}
           disabled={project.live}
         />
       </Grid>
@@ -117,14 +117,14 @@ function Funding(props) {
       <Grid item xs={12}>
         <Typography>Equity represented by funding goal</Typography>
         <TextField
-          type="number"
+          type='number'
           min={0}
           max={100}
-          variant="outlined"
+          variant='outlined'
           fullWidth
           value={equity}
           onChange={handleUpdateEquity}
-          InputProps={{ endAdornment: "%" }}
+          InputProps={{ endAdornment: '%' }}
           disabled={project.live}
         />
       </Grid>
@@ -134,9 +134,9 @@ function Funding(props) {
         <MuiPickersUtilsProvider utils={MomentUtils}>
           <KeyboardDatePicker
             value={deadline}
-            onChange={(date) => handleUpdateDeadline(date)}
+            onChange={date => handleUpdateDeadline(date)}
             minDate={moment(new Date()).toISOString()}
-            format="DD/MM/yyyy"
+            format='DD/MM/yyyy'
             disabled={project.live}
           />
         </MuiPickersUtilsProvider>
@@ -144,15 +144,15 @@ function Funding(props) {
 
       <Grid item xs={12}>
         <Button
-          variant="contained"
+          variant='contained'
           onClick={handleContinue}
           className={classes.primaryButton}
         >
-          {project.live ? "SAVE" : "CONTINUE"}
+          {project.live ? 'SAVE' : 'CONTINUE'}
         </Button>
       </Grid>
     </Grid>
-  );
+  )
 }
 
-export default Funding;
+export default Funding

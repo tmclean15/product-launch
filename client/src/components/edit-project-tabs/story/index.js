@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { Grid, Typography, TextField, Button } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
-import BackForwardArrows from "../arrows/BackForwardArrows";
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
+import { Grid, Typography, TextField, Button } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core/styles'
+import BackForwardArrows from '../arrows/BackForwardArrows'
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   mainTitle: {
     fontWeight: 500,
     fontSize: 24,
@@ -12,47 +12,47 @@ const useStyles = makeStyles((theme) => ({
   primaryButton: {
     backgroundColor: theme.primary,
     color: theme.bgcolor,
-    margin: "2rem 0",
-    minWidth: "150px",
+    margin: '2rem 0',
+    minWidth: '150px',
   },
-}));
+}))
 
 function Story(props) {
-  const classes = useStyles();
-  const { userId, project } = props;
+  const classes = useStyles()
+  const { userId, project } = props
 
   // State variables
-  const [description, setDescription] = useState(project.description);
+  const [description, setDescription] = useState(project.description)
 
-  const handleUpdateDescription = (event) => {
-    setDescription(event.target.value);
-  };
+  const handleUpdateDescription = event => {
+    setDescription(event.target.value)
+  }
 
-  const handleContinue = (event) => {
+  const handleContinue = event => {
     axios
       .put(`/api/v1/users/${userId}/projects/${project.id}`, {
         description: description,
       })
-      .then((res) => props.handleTabChange("Funding"))
-      .catch((err) => console.log(err));
-  };
+      .then(res => props.handleTabChange('Funding'))
+      .catch(err => console.log(err))
+  }
 
-  const handleBack = (event) => {
-    props.handleTabChange("Basic");
-  };
+  const handleBack = event => {
+    props.handleTabChange('Basic')
+  }
 
-  const handleForward = (event) => {
-    props.handleTabChange("Funding");
-  };
+  const handleForward = event => {
+    props.handleTabChange('Funding')
+  }
 
   useEffect(() => {
     const update = {
       description: description,
-    };
-    if (props.openPreview) {
-      props.handleEditProject({ ...project, ...update });
     }
-  }, [props.openPreview]);
+    if (props.openPreview) {
+      props.handleEditProject({ ...project, ...update })
+    }
+  }, [props.openPreview])
 
   return (
     <Grid container spacing={4}>
@@ -71,7 +71,7 @@ function Story(props) {
         <TextField
           multiline
           rows={10}
-          variant="outlined"
+          variant='outlined'
           fullWidth
           value={description}
           onChange={handleUpdateDescription}
@@ -80,15 +80,15 @@ function Story(props) {
 
       <Grid item xs={12}>
         <Button
-          variant="contained"
+          variant='contained'
           onClick={handleContinue}
           className={classes.primaryButton}
         >
-          {project.live ? "SAVE" : "CONTINUE"}
+          {project.live ? 'SAVE' : 'CONTINUE'}
         </Button>
       </Grid>
     </Grid>
-  );
+  )
 }
 
-export default Story;
+export default Story

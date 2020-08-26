@@ -1,6 +1,6 @@
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import moment from "moment";
+import React from 'react'
+import { makeStyles } from '@material-ui/core/styles'
+import moment from 'moment'
 
 import {
   Typography,
@@ -10,40 +10,40 @@ import {
   Divider,
   Box,
   Link,
-} from "@material-ui/core";
+} from '@material-ui/core'
 
-import LinkTo from "../navigation/LinkTo";
+import LinkTo from '../navigation/LinkTo'
 
-moment.updateLocale("en", { relativeTime: { future: "%s to go" } });
+moment.updateLocale('en', { relativeTime: { future: '%s to go' } })
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   card: {
-    height: "100%",
+    height: '100%',
   },
   media: {
     height: theme.spacing(35),
   },
   cardTitle: {
-    fontWeight: "500",
+    fontWeight: '500',
   },
   cardInvested: {
-    fontWeight: "500",
+    fontWeight: '500',
   },
-}));
+}))
 
 function ProjectCard(props) {
-  const project = props.project;
-  const styles = useStyles();
-  const classes = props.styles || styles;
-  const showUser = props.showUser || false;
-  const fromNow = moment(project.deadline).fromNow();
+  const project = props.project
+  const styles = useStyles()
+  const classes = props.styles || styles
+  const showUser = props.showUser || false
+  const fromNow = moment(project.deadline).fromNow()
 
-  let projectTitle = project.title;
+  let projectTitle = project.title
   if (projectTitle) {
     projectTitle =
       projectTitle.length < 50
         ? project.title
-        : project.title.substring(0, 50) + "...";
+        : project.title.substring(0, 50) + '...'
   }
 
   return (
@@ -51,27 +51,27 @@ function ProjectCard(props) {
       <Link component={LinkTo} to={`/project/${project.id}`}>
         <CardMedia
           className={classes.media}
-          component="img"
+          component='img'
           src={
             project.photos[0]
               ? process.env.REACT_APP_AWS_ROOT + project.photos[0]
-              : ""
+              : ''
           }
         ></CardMedia>
       </Link>
       <CardContent>
-        <Typography className={classes.cardTitle} variant="h5" component="h4">
+        <Typography className={classes.cardTitle} variant='h5' component='h4'>
           {projectTitle}
         </Typography>
         <Box mt={1} />
-        <Typography className={classes.cardInvested} display="inline">
+        <Typography className={classes.cardInvested} display='inline'>
           {project.current_funding}
         </Typography>
-        <Typography color="textSecondary" display="inline">
-          {" / " + project.funding_goal}
+        <Typography color='textSecondary' display='inline'>
+          {' / ' + project.funding_goal}
         </Typography>
-        <Typography variant="body2" color="textSecondary">
-          Equity exchange: {project.equity * 100}% |{" " + fromNow}
+        <Typography variant='body2' color='textSecondary'>
+          Equity exchange: {project.equity * 100}% |{' ' + fromNow}
         </Typography>
       </CardContent>
       <Divider />
@@ -81,19 +81,19 @@ function ProjectCard(props) {
             <Link
               component={LinkTo}
               to={`/profile/${project.user_id}`}
-              color="inherit"
+              color='inherit'
             >
               By {project.username}
             </Link>
           </Typography>
 
-          <Typography color="textSecondary" display="inline">
+          <Typography color='textSecondary' display='inline'>
             {project.location}
           </Typography>
         </CardContent>
       )}
     </Card>
-  );
+  )
 }
 
-export default ProjectCard;
+export default ProjectCard

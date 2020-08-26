@@ -1,5 +1,5 @@
-import React, { useState, useCallback } from "react";
-import axios from "axios";
+import React, { useState, useCallback } from 'react'
+import axios from 'axios'
 import {
   Button,
   Dialog,
@@ -9,71 +9,71 @@ import {
   TextField,
   Grid,
   Typography,
-} from "@material-ui/core";
+} from '@material-ui/core'
 
-import DropZoneUpload from "../components/DropZoneUpload";
-import ExpertiseChips from "../expertise-chips";
+import DropZoneUpload from '../components/DropZoneUpload'
+import ExpertiseChips from '../expertise-chips'
 
 function EditProfileDialog(props) {
   // Used for initializing values
-  const user = props.user;
-  let currentPhotos = user.profile_pics;
+  const user = props.user
+  let currentPhotos = user.profile_pics
 
   // State variables
-  const [dialogOpen, setDialogOpen] = useState(false);
+  const [dialogOpen, setDialogOpen] = useState(false)
 
-  const [location, setLocation] = useState(user.location);
-  const [description, setDescription] = useState(user.description);
-  const [expertise, setExpertise] = useState(user.expertise);
-  const [interest, setInterest] = useState(user.invest_in);
-  const [linkedin, setLinkedin] = useState(user.linkedin);
-  const [angelco, setAngelco] = useState(user.angelco);
+  const [location, setLocation] = useState(user.location)
+  const [description, setDescription] = useState(user.description)
+  const [expertise, setExpertise] = useState(user.expertise)
+  const [interest, setInterest] = useState(user.invest_in)
+  const [linkedin, setLinkedin] = useState(user.linkedin)
+  const [angelco, setAngelco] = useState(user.angelco)
 
-  const [upload, setUpload] = useState(false);
+  const [upload, setUpload] = useState(false)
 
-  const handleOpenDialog = (event) => {
-    setDialogOpen(true);
-  };
+  const handleOpenDialog = event => {
+    setDialogOpen(true)
+  }
 
-  const handleCloseDialog = (event) => {
-    setDialogOpen(false);
-  };
+  const handleCloseDialog = event => {
+    setDialogOpen(false)
+  }
 
-  const handleUpdateExpertise = (expertise) => {
-    setExpertise(expertise);
-  };
+  const handleUpdateExpertise = expertise => {
+    setExpertise(expertise)
+  }
 
-  const handleUpdateInterest = (interest) => {
-    setInterest(interest);
-  };
+  const handleUpdateInterest = interest => {
+    setInterest(interest)
+  }
 
-  const handleUpdateDescription = (event) => {
-    setDescription(event.target.value);
-  };
+  const handleUpdateDescription = event => {
+    setDescription(event.target.value)
+  }
 
-  const handleUpdateLocation = (event) => {
-    setLocation(event.target.value);
-  };
+  const handleUpdateLocation = event => {
+    setLocation(event.target.value)
+  }
 
-  const handleUpdateLinkedin = (event) => {
-    setLinkedin(event.target.value);
-  };
+  const handleUpdateLinkedin = event => {
+    setLinkedin(event.target.value)
+  }
 
-  const handleUpdateAngelco = (event) => {
-    setAngelco(event.target.value);
-  };
+  const handleUpdateAngelco = event => {
+    setAngelco(event.target.value)
+  }
 
-  const handleTriggerFileUpload = (event) => {
+  const handleTriggerFileUpload = event => {
     // Trigger photo upload to s3
-    setUpload(true);
+    setUpload(true)
 
-    setDialogOpen(false);
-  };
+    setDialogOpen(false)
+  }
 
   const handleSave = useCallback(
-    (profilePics) => {
+    profilePics => {
       if (profilePics) {
-        currentPhotos = currentPhotos.concat(profilePics);
+        currentPhotos = currentPhotos.concat(profilePics)
       }
       axios
         .put(`/api/v1/users/${user.id}/profile`, {
@@ -86,35 +86,35 @@ function EditProfileDialog(props) {
           linkedin_profile: linkedin,
           angelco_profile: angelco,
         })
-        .then((res) => {
-          setUpload(false);
-          props.handleUserEdited(res.data);
+        .then(res => {
+          setUpload(false)
+          props.handleUserEdited(res.data)
         })
-        .catch((err) => console.log(err));
+        .catch(err => console.log(err))
     },
     [location, description, expertise, interest, linkedin, angelco, user]
-  );
+  )
 
   return (
     <div>
-      <Button onClick={handleOpenDialog} variant="outlined" color="primary">
+      <Button onClick={handleOpenDialog} variant='outlined' color='primary'>
         Edit profile
       </Button>
       <Dialog
         fullWidth
-        maxWidth="md"
+        maxWidth='md'
         open={dialogOpen}
         onClose={handleCloseDialog}
-        aria-labelledby="form-dialog-title"
+        aria-labelledby='form-dialog-title'
       >
-        <DialogTitle id="form-dialog-title">Edit profile</DialogTitle>
+        <DialogTitle id='form-dialog-title'>Edit profile</DialogTitle>
         <DialogContent>
           <Grid container spacing={4}>
             <Grid item xs={12}>
               <Typography>Profile pics</Typography>
               <DropZoneUpload
                 upload={upload}
-                uploadLocation="user"
+                uploadLocation='user'
                 handleUploadSuccess={handleSave}
               />
             </Grid>
@@ -122,9 +122,9 @@ function EditProfileDialog(props) {
             <Grid item xs={12}>
               <Typography>Location</Typography>
               <TextField
-                variant="outlined"
+                variant='outlined'
                 fullWidth
-                value={location || ""}
+                value={location || ''}
                 onChange={handleUpdateLocation}
               />
             </Grid>
@@ -132,11 +132,11 @@ function EditProfileDialog(props) {
             <Grid item xs={12}>
               <Typography>Description</Typography>
               <TextField
-                variant="outlined"
+                variant='outlined'
                 fullWidth
                 multiline
                 rows={3}
-                value={description || ""}
+                value={description || ''}
                 onChange={handleUpdateDescription}
               />
             </Grid>
@@ -160,9 +160,9 @@ function EditProfileDialog(props) {
             <Grid item xs={12}>
               <Typography>Linkedin profile</Typography>
               <TextField
-                variant="outlined"
+                variant='outlined'
                 fullWidth
-                value={linkedin || ""}
+                value={linkedin || ''}
                 onChange={handleUpdateLinkedin}
               />
             </Grid>
@@ -170,9 +170,9 @@ function EditProfileDialog(props) {
             <Grid item xs={12}>
               <Typography>Angel.co profile</Typography>
               <TextField
-                variant="outlined"
+                variant='outlined'
                 fullWidth
-                value={angelco || ""}
+                value={angelco || ''}
                 onChange={handleUpdateAngelco}
               />
             </Grid>
@@ -186,7 +186,7 @@ function EditProfileDialog(props) {
         </DialogActions>
       </Dialog>
     </div>
-  );
+  )
 }
 
-export default EditProfileDialog;
+export default EditProfileDialog

@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 import {
   Box,
   AppBar,
@@ -6,16 +6,16 @@ import {
   Typography,
   Button,
   Link,
-} from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
-import logo from "../staticImages/ic-logo.png";
+} from '@material-ui/core'
+import { makeStyles } from '@material-ui/core/styles'
+import logo from '../staticImages/ic-logo.png'
 
-import LinkTo from "../navigation/LinkTo";
+import LinkTo from '../navigation/link-to'
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   appBar: {
-    background: "white",
-    color: "black",
+    background: 'white',
+    color: 'black',
     elevation: 0,
     zIndex: theme.zIndex.drawer + 1,
   },
@@ -28,65 +28,65 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   titleLink: {
-    "&:hover": {
-      textDecoration: "None",
+    '&:hover': {
+      textDecoration: 'None',
     },
   },
-}));
+}))
 
 function NavBar({ currentUser, userProfile }) {
-  const classes = useStyles();
+  const classes = useStyles()
   return (
     <Box mb={8}>
-      <AppBar variant="outlined" className={classes.appBar} position="fixed">
+      <AppBar variant='outlined' className={classes.appBar} position='fixed'>
         <Toolbar>
-          <Link component={LinkTo} to="/">
+          <Link component={LinkTo} to='/'>
             <img
               className={classes.logo}
               src={logo}
-              alt="Product Launch Logo"
+              alt='Product Launch Logo'
             ></img>
           </Link>
-          <Typography variant="h6" className={classes.title} component="h1">
+          <Typography variant='h6' className={classes.title} component='h1'>
             <Link
               component={LinkTo}
-              to="/"
+              to='/'
               className={classes.titleLink}
-              color="inherit"
+              color='inherit'
             >
               Product Launch
             </Link>
           </Typography>
 
           {currentUser && (
-            <Button color="inherit" component={LinkTo} to={userProfile}>
+            <Button color='inherit' component={LinkTo} to={userProfile}>
               {currentUser.login_email}
             </Button>
           )}
 
-          <Button color="inherit" component={LinkTo} to={"/"}>
+          <Button color='inherit' component={LinkTo} to={'/'}>
             Explore
           </Button>
           <Button
-            color="inherit"
+            color='inherit'
             component={LinkTo}
-            to={userProfile ? `${userProfile}/projects/create` : "/signup"}
+            to={userProfile ? `${userProfile}/projects/create` : '/signup'}
           >
             Create
           </Button>
           {!currentUser && (
             <div>
-              <Button color="inherit" component={LinkTo} to="/login">
+              <Button color='inherit' component={LinkTo} to='/login'>
                 Login
               </Button>
-              <Button color="inherit" component={LinkTo} to="/signup">
+              <Button color='inherit' component={LinkTo} to='/signup'>
                 Signup
               </Button>
             </div>
           )}
           {currentUser && (
             <div>
-              <Button color="inherit" component={LinkTo} to="/logout">
+              <Button color='inherit' component={LinkTo} to='/logout'>
                 Logout
               </Button>
             </div>
@@ -94,7 +94,7 @@ function NavBar({ currentUser, userProfile }) {
         </Toolbar>
       </AppBar>
     </Box>
-  );
+  )
 }
 
-export default NavBar;
+export default NavBar
