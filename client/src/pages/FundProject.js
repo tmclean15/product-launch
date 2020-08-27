@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
-import axios from "axios";
+import React, { useState, useEffect } from 'react'
+import { useHistory } from 'react-router-dom'
+import axios from 'axios'
 import {
   Button,
   Container,
@@ -9,92 +9,92 @@ import {
   Typography,
   TextField,
   Divider,
-} from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
-import DoneOutlineIcon from "@material-ui/icons/DoneOutline";
+} from '@material-ui/core'
+import { makeStyles } from '@material-ui/core/styles'
+import DoneOutlineIcon from '@material-ui/icons/DoneOutline'
 
-import Navbar from "../components/Navbar";
-import ChoosePaymentMethod from "../components/ChoosePaymentMethod";
-import LoadingScreen from "../components/LoadingScreen";
+import Navbar from '../components/Navbar'
+import ChoosePaymentMethod from '../components/ChoosePaymentMethod'
+import LoadingScreen from '../components/LoadingScreen'
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   header: {
-    padding: "2rem",
+    padding: '2rem',
   },
   divider: {
     backgroundColor: theme.primary,
-    height: "2px",
-    width: "10%",
-    margin: "auto",
+    height: '2px',
+    width: '10%',
+    margin: 'auto',
   },
   form: {
-    marginTop: "2rem",
-    marginBotton: "2rem",
+    marginTop: '2rem',
+    marginBotton: '2rem',
   },
   button: {
     backgroundColor: theme.primary,
-    marginTop: "4rem",
-    marginBottom: "4rem",
+    marginTop: '4rem',
+    marginBottom: '4rem',
     color: theme.bgcolor,
-    height: "3rem",
-    width: "60%",
+    height: '3rem',
+    width: '60%',
   },
   subtitle: {
-    padding: "2rem",
+    padding: '2rem',
   },
-}));
+}))
 
 function FundProject(props) {
-  const classes = useStyles();
-  const history = useHistory();
-  const projectId = props.match.params.projectId;
+  const classes = useStyles()
+  const history = useHistory()
+  const projectId = props.match.params.projectId
 
   // State variables
-  const [loading, setLoading] = useState(true);
-  const [success, setSuccess] = useState(false);
-  const [paymentMethod, setPaymentMethod] = useState(null);
-  const [amount, setAmount] = useState("");
-  const [project, setProject] = useState(null);
+  const [loading, setLoading] = useState(true)
+  const [success, setSuccess] = useState(false)
+  const [paymentMethod, setPaymentMethod] = useState(null)
+  const [amount, setAmount] = useState('')
+  const [project, setProject] = useState(null)
 
   useEffect(() => {
     axios
       .get(`/api/v1/projects/${projectId}`)
-      .then((res) => {
-        setProject(res.data);
-        setLoading(false);
+      .then(res => {
+        setProject(res.data)
+        setLoading(false)
       })
-      .catch((err) => {
-        history.push("/404");
-      });
-  }, [projectId, success]);
+      .catch(err => {
+        history.push('/404')
+      })
+  }, [projectId, success])
 
-  const handleFund = (event) => {
-    event.preventDefault();
+  const handleFund = event => {
+    event.preventDefault()
 
     axios
       .post(`/api/v1/payment/fund/${projectId}`, {
         payment_method: paymentMethod.id,
         fund_amount: amount,
       })
-      .then((res) => setSuccess(true))
-      .catch((err) => console.log(err));
-  };
+      .then(res => setSuccess(true))
+      .catch(err => console.log(err))
+  }
 
-  const handleUpdatePayment = (method) => {
-    setPaymentMethod(method);
-  };
+  const handleUpdatePayment = method => {
+    setPaymentMethod(method)
+  }
 
-  const handleUpdateAmount = (event) => {
-    setAmount(Number(event.target.value));
-  };
+  const handleUpdateAmount = event => {
+    setAmount(Number(event.target.value))
+  }
 
-  if (loading) return <LoadingScreen />;
+  if (loading) return <LoadingScreen />
   else
     return (
       <>
-        <Container maxWidth="sm">
-          <Typography variant="h2" align="center" className={classes.header}>
-            <Box fontWeight="fontWeightMedium" fontSize={40}>
+        <Container maxWidth='sm'>
+          <Typography variant='h2' align='center' className={classes.header}>
+            <Box fontWeight='fontWeightMedium' fontSize={40}>
               Fund - {project.title}
             </Box>
           </Typography>
@@ -102,11 +102,11 @@ function FundProject(props) {
           <Divider classes={{ root: classes.divider }} />
 
           <Typography
-            variant="subtitle1"
-            align="center"
+            variant='subtitle1'
+            align='center'
             className={classes.subtitle}
           >
-            <Box fontWeight="fontWeightMedium" fontSize={16}>
+            <Box fontWeight='fontWeightMedium' fontSize={16}>
               Current funding for this project: {project.current_funding}
               <br />
               Funding goal: {project.funding_goal}
@@ -115,17 +115,17 @@ function FundProject(props) {
 
           {success ? (
             <Box
-              display="flex"
-              flexDirection="column"
-              justifyContent="center"
-              alignItems="center"
-              height="100%"
+              display='flex'
+              flexDirection='column'
+              justifyContent='center'
+              alignItems='center'
+              height='100%'
             >
               <Typography>Sucessfully Funded!</Typography>
-              <DoneOutlineIcon fontSize="large" />
+              <DoneOutlineIcon fontSize='large' />
             </Box>
           ) : (
-            <form autoComplete="off" onSubmit={handleFund}>
+            <form autoComplete='off' onSubmit={handleFund}>
               <Grid container spacing={4} className={classes.form}>
                 <Grid item xs={12}>
                   <Typography>Select a method of payment</Typography>
@@ -136,23 +136,23 @@ function FundProject(props) {
                   <Typography>Choose an amount to fund</Typography>
                   <TextField
                     InputProps={{
-                      startAdornment: "$",
+                      startAdornment: '$',
                     }}
                     value={amount}
                     onChange={handleUpdateAmount}
-                    type="number"
+                    type='number'
                     required
                     fullWidth
-                    variant="outlined"
+                    variant='outlined'
                   />
                 </Grid>
 
-                <Grid item xs={12} align="center">
+                <Grid item xs={12} align='center'>
                   <Button
                     className={classes.button}
-                    size="large"
-                    variant="contained"
-                    type="submit"
+                    size='large'
+                    variant='contained'
+                    type='submit'
                     disabled={paymentMethod && amount ? false : true}
                     onSubmit={handleFund}
                   >
@@ -164,7 +164,7 @@ function FundProject(props) {
           )}
         </Container>
       </>
-    );
+    )
 }
 
-export default FundProject;
+export default FundProject
