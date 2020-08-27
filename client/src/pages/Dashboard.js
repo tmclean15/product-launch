@@ -16,10 +16,9 @@ import {
 import { TabPanel, TabContext, TabList } from '@material-ui/lab'
 import LinkedInIcon from '@material-ui/icons/LinkedIn'
 import { makeStyles } from '@material-ui/core/styles'
-import EditProfileDialog from '../components/EditProfileDialog'
-import ProjectCard from '../components/ProjectCard'
-import LinkTo from '../components/navigation/LinkTo'
-import angelco from '../staticImages/AngelList_Black_Victory_Hand.png'
+import EditProfileDialog from 'components/EditProfileDialog'
+import ProjectCard from 'components/ProjectCard'
+import angelco from 'staticImages/AngelList_Black_Victory_Hand.png'
 
 const useStyles = makeStyles(theme => ({
   root: {

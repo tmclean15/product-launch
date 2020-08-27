@@ -2,10 +2,10 @@ import React, { useState, useCallback, useEffect } from 'react'
 import axios from 'axios'
 import { Grid, Typography, TextField, Button, Box } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
-import IndustriesDropdown from '../IndustriesDropdown'
-import DropZoneUpload from '../DropZoneUpload'
-import ForwardArrow from '../arrows/ForwardArrow'
-import LoadingScreen from '../LoadingScreen'
+import IndustriesDropdown from 'components/IndustriesDropdown'
+import DropZoneUpload from 'components/DropZoneUpload'
+import ForwardArrow from 'components/arrows/ForwardArrow'
+import LoadingScreen from 'components/LoadingScreen'
 
 const useStyles = makeStyles(theme => ({
   mainTitle: {

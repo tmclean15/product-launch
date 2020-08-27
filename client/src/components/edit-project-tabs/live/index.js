@@ -4,7 +4,7 @@ import { Grid, Typography, Button, Snackbar, Box } from '@material-ui/core'
 import MuiAlert from '@material-ui/lab/Alert'
 import DoneOutlineIcon from '@material-ui/icons/DoneOutline'
 import { makeStyles } from '@material-ui/core/styles'
-import BackArrow from '../arrows/BackArrow'
+import BackArrow from 'components/arrows/BackArrow'
 
 const useStyles = makeStyles(theme => ({
   mainTitle: {

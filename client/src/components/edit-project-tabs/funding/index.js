@@ -9,7 +9,7 @@ import {
 } from '@material-ui/pickers'
 import { makeStyles } from '@material-ui/core/styles'
 
-import BackForwardArrows from '../arrows/BackForwardArrows'
+import BackForwardArrows from 'components/arrows/BackForwardArrows'
 
 const useStyles = makeStyles(theme => ({
   mainTitle: {

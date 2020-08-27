@@ -21,16 +21,16 @@ import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord'
 import VisibilityIcon from '@material-ui/icons/Visibility'
 import { makeStyles } from '@material-ui/core/styles'
 
-import Project from '../pages/Project'
+import Project from 'pages/Project'
 
-import LoadingScreen from '../components/LoadingScreen'
-import DeleteProject from '../components/DeleteProject'
+import LoadingScreen from 'components/LoadingScreen'
+import DeleteProject from 'components/DeleteProject'
 
-import Basics from '../components/edit_project_tabs/Basics'
-import Story from '../components/edit_project_tabs/Story'
-import Funding from '../components/edit_project_tabs/Funding'
-import Payment from '../components/edit_project_tabs/Payment'
-import Live from '../components/edit_project_tabs/Live'
+import Basics from 'components/edit-project-tabs/Basics'
+import Story from 'components/edit-project-tabs/Story'
+import Funding from 'components/edit-project-tabs/Funding'
+import Payment from 'components/edit-project-tabs/Payment'
+import Live from 'components/edit-project-tabs/Live'
 
 const useStyles = makeStyles(theme => ({
   root: {

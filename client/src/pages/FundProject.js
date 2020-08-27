@@ -13,9 +13,8 @@ import {
 import { makeStyles } from '@material-ui/core/styles'
 import DoneOutlineIcon from '@material-ui/icons/DoneOutline'
 
-import Navbar from '../components/Navbar'
-import ChoosePaymentMethod from '../components/ChoosePaymentMethod'
-import LoadingScreen from '../components/LoadingScreen'
+import ChoosePaymentMethod from 'components/ChoosePaymentMethod'
+import LoadingScreen from 'components/LoadingScreen'
 
 const useStyles = makeStyles(theme => ({
   header: {

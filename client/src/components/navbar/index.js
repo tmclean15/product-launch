@@ -8,9 +8,9 @@ import {
   Link,
 } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
-import logo from '../staticImages/ic-logo.png'
+import logo from 'staticImages/ic-logo.png'
 
-import LinkTo from '../navigation/link-to'
+import LinkTo from 'components/navigation/LinkTo'
 
 const useStyles = makeStyles(theme => ({
   appBar: {

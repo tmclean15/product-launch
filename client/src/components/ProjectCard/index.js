@@ -12,7 +12,7 @@ import {
   Link,
 } from '@material-ui/core'
 
-import LinkTo from '../navigation/LinkTo'
+import LinkTo from 'components/navigation/LinkTo'
 
 moment.updateLocale('en', { relativeTime: { future: '%s to go' } })
 

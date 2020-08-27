@@ -11,7 +11,7 @@ import AccountBalanceIcon from '@material-ui/icons/AccountBalance'
 import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline'
 import { makeStyles } from '@material-ui/core/styles'
 import axios from 'axios'
-import BackForwardArrows from '../arrows/BackForwardArrows'
+import BackForwardArrows from 'components/arrows/BackForwardArrows'
 
 const useStyles = makeStyles(theme => ({
   mainTitle: {

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Grid, Typography, TextField, Button } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
-import BackForwardArrows from '../arrows/BackForwardArrows'
+import BackForwardArrows from 'components/arrows/BackForwardArrows'
 
 const useStyles = makeStyles(theme => ({
   mainTitle: {

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import moment from 'moment'
-
 import {
   Typography,
   Container,
@@ -14,10 +13,8 @@ import {
   Tabs,
   Tab,
 } from '@material-ui/core'
-
 import { makeStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
-
 import axios from 'axios'
 
 moment.updateLocale('en', { relativeTime: { future: '%s to go' } })

@@ -16,8 +16,8 @@ import {
 
 import { makeStyles } from '@material-ui/core/styles'
 
-import Navbar from '../components/Navbar'
-import IndustriesDropdown from '../components/IndustriesDropdown'
+import Navbar from 'components/Navbar'
+import IndustriesDropdown from 'components/IndustriesDropdown'
 
 const useStyles = makeStyles(theme => ({
   header: {

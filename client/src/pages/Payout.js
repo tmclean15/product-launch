@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Grid, Container, Typography, Button } from '@material-ui/core'
-import LoadingScreen from '../components/LoadingScreen'
 import { makeStyles } from '@material-ui/core/styles'
+
+import LoadingScreen from 'components/LoadingScreen'
 
 const useStyles = makeStyles(theme => ({
   marginTop: {

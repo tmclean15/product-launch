@@ -19,9 +19,9 @@ import {
 import MomentUtils from '@date-io/moment'
 import moment from 'moment'
 
-import ProjectCard from '../components/ProjectCard'
+import ProjectCard from 'components/ProjectCard'
 
-import toTitleCase from '../util/toTitleCase'
+import toTitleCase from 'util/toTitleCase'
 
 const useStyles = makeStyles(theme => ({
   root: {

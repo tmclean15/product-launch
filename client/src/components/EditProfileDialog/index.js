@@ -11,8 +11,8 @@ import {
   Typography,
 } from '@material-ui/core'
 
-import DropZoneUpload from '../components/DropZoneUpload'
-import ExpertiseChips from '../expertise-chips'
+import DropZoneUpload from 'components/DropZoneUpload'
+import ExpertiseChips from 'components/ExpertiseChips'
 
 function EditProfileDialog(props) {
   // Used for initializing values

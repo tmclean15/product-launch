@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import NavBar from '../components/Navbar'
 import axios from 'axios'
+
+import NavBar from 'components/Navbar'
 
 function Main(props) {
   const [currentUser, setCurrentUser] = useState(false)
